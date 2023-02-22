@@ -1,0 +1,18 @@
+This document describes all of the required libraries and versions for the proper functioning of the Fidget Knob program.
+
+One should pay specific attention to the recommended version. As certain libraries add and deprecate features with successive versions, the Fidget Knob may not work out of the box with different library versions.
+
+Core Libraries:
+ESP32 Core==2.0.5
+Arduino Core
+
+Libraries:
+simplefoc==2.2.3 DEV BRANCH
+simplefocdrivers==1.0.2 DEV BRANCH
+ESP32_AnalogWrite==0.2
+
+**THE ABOVE LIBRARIES ARE INCLUDED IN THE GITHUB FOR THIS PROJECT**
+However, they can also be accessed through the following links:
+https://github.com/simplefoc/Arduino-FOC/releases/tag/v2.2.3
+https://github.com/simplefoc/Arduino-FOC-drivers/tree/dev
+https://github.com/erropix/ESP32_AnalogWrite
