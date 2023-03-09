@@ -29,7 +29,7 @@ static int configNumber = 9; //Total number of Fidget Knob mode configurations!
 // Run calibration program (______________.name) at startup, then update these constants with the calibration results.
 // NOTE: The calibration softwares are notoriously finnicky, please run it multiple times and take the average. Also free feel to adjust these values and try multiple offsets.
 // One can also discover their motor pole pair number by following this tutorial from SimpleFOC: https://docs.simplefoc.com/example_from_scratch. Match 1 rotation per 1 second in Step 2 to accurately set pole pairs.
-const float ZERO_ELECTRICAL_OFFSET = 0.20;
+const float ZERO_ELECTRICAL_OFFSET = 0.80;
 static const Direction FOC_DIRECTION = Direction::CW;
 static const int MOTOR_POLE_PAIRS = 7;
 // ####
@@ -68,13 +68,18 @@ const int colorBlack[3] = {0,0,0};
 int activeColor[3];
 //int lightIncrement = 0;
 
+//************** This is the end of the main chunk of variables you should be adjusting for setup and such. For mode configuration, see the "Configuration" function.*********
+
 // RTC Stuff
 time_t now;
 struct tm timeInfo;
+struct timeval tv;
+String unixTime;
 
 //Data Output Setups
 //Storage - For easier processing and output within a single "print" statement (important to ensure quick processing of data monitoring loop so we don't mess up knob function)
 char dataString[45];  // holds the data to be written to the file
+String endChar = "*"; 
 // Variables for later averaging and printing to serial (and thereby document)
 float motorAngleOutput;
 float motorVelocityOutput;
@@ -83,6 +88,7 @@ float motorPhaseB;
 float motorPhaseC;
 int counter;
 int countMax;
+int timeFlag;
 
 // Device Mode and Haptics Configuration
 int configSelect = 1;
@@ -123,19 +129,48 @@ float idle_check_velocity_ewma = 0;
 uint32_t last_idle_start = 0;
 uint32_t last_publish = 0;
 
-
 void setup() {
-  _delay(2000);
+  _delay(1000);
   // use monitoring with serial for motor init
   // monitoring port
   Serial.begin(115200);
   _delay(2000);
 
-  // Configure LED Pins
+   // Configure LED Pins
   pinMode(ledRed, OUTPUT);
   pinMode(ledBlue, OUTPUT);
   pinMode(ledGreen, OUTPUT);
 
+  // The below checks if the main button is depressed while the device boots up. If it is, we set the default time stamp and do not wait for serial connection from Processing.
+  pinState = !digitalRead(buttonPin); 
+  if (pinState == 1) {    //enables an independent mode of operation not tied to Processing and datalogging.
+    unixTime = 1;
+    //Flash blue LED to show we selected the independent mode
+    for (int j = 0; j < 4; j++) {
+      analogWrite(ledRed, (255-colorBlue[0]));
+      analogWrite(ledGreen, (255-colorBlue[1]));
+      analogWrite(ledBlue, (255-colorBlue[2]));
+      delay(50);
+      analogWrite(ledRed, (255));
+      analogWrite(ledGreen, (255));
+      analogWrite(ledBlue, (255));
+      delay(50);
+    }
+    formerPinState = pinState;
+  } 
+  else {                  //initializes proper timestamp as received from Processing data logging
+    int timeRead = 0;
+    while (!Serial.available()) {
+      delay(300);
+      Serial.println("Serial unavailable");
+    }
+    while (Serial.available() > 0 && timeRead == 0) {
+      unixTime = Serial.readString();
+      Serial.println(unixTime);
+      timeRead = 1;
+    }
+  }
+ 
   // CONFIGURATE HARDWARE LINKS
   // initialise magnetic sensor hardware
   sensor.init();
@@ -164,9 +199,6 @@ void setup() {
   motor.target = 2;
   Serial.println("Just initialized the FOC");
 
-  // INITIALIZE MOTOR MONITORING
-  // tell the motor to use the monitoring **************************** Commented out for custom implementation.
-  //motor.useMonitoring(Serial);
   // chosen variables to include in monitoring, were the standard library to be used.
   motor.monitor_variables = _MON_TARGET | _MON_VOLT_Q | _MON_VEL | _MON_ANGLE;  // default _MON_TARGET | _MON_VOLT_Q | _MON_VEL | _MON_ANGLE
   motor.monitor_downsample = 100;                                               // default 10, downsample output to serial
@@ -197,8 +229,8 @@ void setup() {
   motor.move(0); // initial zeroing move, before setting the mode
   
   // RTC Stuff - this is all to enable a real-time clock for accurate data matching with real-world occurences, if that interests you. Needs some work still, but functions with inital, manually seeded start time (below).
-  struct timeval tv;
-  tv.tv_sec =	1674219600;  // enter UTC UNIX time (get it from https://www.unixtimestamp.com ) ***THIS CAN BE UPDATED BEFORE STARTING THE DEVICE TO TRACK THE REAL TIME. Future work will make this automatic/from system.
+  int unixTimeConvert = unixTime.toInt();
+  tv.tv_sec =	unixTimeConvert;  // enter UTC UNIX time (get it from https://www.unixtimestamp.com ) ***THIS CAN BE UPDATED BEFORE STARTING THE DEVICE TO TRACK THE REAL TIME. Future work will make this automatic/from system.
   settimeofday(&tv, NULL);
 
   // Set timezone to France (Europe/Paris or your own timezone, if you want)
@@ -427,7 +459,7 @@ void CustomMonitoring() {
     float ubAvg = motorPhaseB / countMax;
     float ucAvg = motorPhaseC / countMax;
 
-   //dtostrf(float_value, min_width, num_digits_after_decimal, where_to_store_string)
+    //dtostrf(float_value, min_width, num_digits_after_decimal, where_to_store_string)
     char angleConvert[9];
     char velocityConvert[9];
     char uaConvert[7];
@@ -438,7 +470,8 @@ void CustomMonitoring() {
     dtostrf(uaAvg, 5, 2, uaConvert);
     dtostrf(ubAvg, 5, 2, ubConvert);
     dtostrf(ucAvg, 5, 2, ucConvert);
-    sprintf(dataString, "%02d:%02d:%02d,%d,%s,%s,%s,%s,%s,%d", timeInfo.tm_hour, timeInfo.tm_min, timeInfo.tm_sec, millis(), angleConvert, velocityConvert, uaConvert, ubConvert, ucConvert, configSelect);
+    //endChar = "*";
+    sprintf(dataString, "%02d:%02d:%02d,%d,%s,%s,%s,%s,%s,%d,%d", timeInfo.tm_hour, timeInfo.tm_min, timeInfo.tm_sec, millis(), angleConvert, velocityConvert, uaConvert, ubConvert, ucConvert, configSelect, timeFlag);
     Serial.println(dataString);
 
     //reset variables
@@ -530,8 +563,7 @@ void MotorTask() {
 }
 
 void loop() {
-  time(&now);
-  localtime_r(&now, &timeInfo);
+
   // Determine if a button has been pressed to switch modes
   pinState = !digitalRead(buttonPin);
   if (pinState != formerPinState && pinState == 1) {
@@ -550,6 +582,11 @@ void loop() {
 
   // CALL THE CUSTOM MONITORING TASK HERE
   CustomMonitoring();
+
+  //Output to LEDs here
+  //analogWrite(ledRed, (255-activeColor[0]));
+  //analogWrite(ledGreen, (255-activeColor[1]));
+  //analogWrite(ledBlue, (255-activeColor[2]));
 
   // Call Command Interface
   // user communication

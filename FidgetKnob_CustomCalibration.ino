@@ -28,7 +28,7 @@ void setup() {
   sensor.init();
 
   // link driver
-  driver.voltage_limit = 4.5;
+  driver.voltage_limit = 5;
   driver.voltage_power_supply = 10;
 
   driver.init();
@@ -83,7 +83,7 @@ void MotorCalibrate() {
       Serial.println(end_sensor);
 
 
-      motor.voltage_limit = 5;
+      motor.voltage_limit = 4;
       motor.move(a);
 
       Serial.println("");
@@ -106,7 +106,7 @@ void MotorCalibrate() {
       //snprintf(buf_, sizeof(buf_), "Going to measure 20 electrical revolutions...", electrical_revolutions);
       Serial.println("Going to measure 20 electrical revolutions...");
       //print_buf(buf_);
-      motor.voltage_limit = 5;
+      motor.voltage_limit = 4;
       motor.move(a);
       Serial.println("Going to electrical zero...");
       float destination = a + _2PI;
@@ -162,7 +162,8 @@ void MotorCalibrate() {
       Serial.print("Electrical angle / mechanical angle (i.e. pole pairs) = ");
       Serial.println(electrical_per_mechanical);
 
-      //int measured_pole_pairs = (int)round(electrical_per_mechanical); //This is where one should apply the Pole Pairs from the calibration program, and I have simply overwritten it with the known pole pairs I have from prior calibrations. This number is a hardware thing and will never change for any one motor design.
+      //int measured_pole_pairs = (int)round(electrical_per_mechanical);          
+      //***********************This is where one should apply the Pole Pairs from the calibration program, and I have simply overwritten it with the known pole pairs I have from prior calibrations. This number is a hardware thing and will never change for any one motor design.******************
       int measured_pole_pairs = 7;
       Serial.print("Pole pairs set to: ");
       Serial.println(measured_pole_pairs);
@@ -232,7 +233,7 @@ void MotorCalibrate() {
       // TODO: save to non-volatile storage
       motor.pole_pairs = measured_pole_pairs;
       motor.zero_electric_angle = avg_offset_angle + _3PI_2;
-      motor.voltage_limit = 5;
+      motor.voltage_limit = 3;
       motor.controller = MotionControlType::torque;
 
       //Serial.println("\n\nRESULTS:\n Update these constants at the top of " __FILE__);
