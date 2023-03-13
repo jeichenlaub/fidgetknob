@@ -33,9 +33,9 @@ The core of this project is a single Arduino .ino file. The software can be init
 
 This main .ino is supported by multiple libraries (found in requirements.txt) that are REQUIRED for the proper functioning of the software. These libraries are also included in the 'libraries' folder due to their permissive licensing rules.
 
-**BEFORE RUNNING** the Fidget Knob, one must calibrate it with the included calibration program *CustomSimpleFOCCalibration.ino.* Please note this calibration program is not great, and one should run it multiple times to get an average value for the "electrical offset." This value then needs to be changed in FidgetKnob_Main.ino file. The calibration program also should determine the amount of electrical pole pairs your motor has, but I find it best to do this using instructions on SimpleFOC's page for getting started (https://docs.simplefoc.com/example_from_scratch), or use the manufacturer claim. By setting this as a fixed value in the program, the 'electrical offset' calibration becomes more accurate. One can also use SimpleFOC's built in offset calibration programs, but these seem to yield equally inaccurate results with this specific hardware setup.
+**BEFORE RUNNING** the Fidget Knob, one must calibrate it with the included calibration program *FidgetKnob_CustomCalibration.ino.* Please note this calibration program is not great, and one should run it multiple times to get an average value for the "electrical offset." This value then needs to be changed in FidgetKnob_Main.ino file. The calibration program also should determine the amount of electrical pole pairs your motor has, but I find it best to do this using instructions on SimpleFOC's page for getting started (https://docs.simplefoc.com/example_from_scratch), or use the manufacturer claim. By setting this as a fixed value in the program, the 'electrical offset' calibration becomes more accurate. One can also use SimpleFOC's built in offset calibration programs, but these seem to yield equally inaccurate results with this specific hardware setup.
 
-Datalogging is handled over serial connection with a parallel Processing scripts (FidgetKnob_DataLogging.pde). One can utilize this script either through the Processing IDE (running on a PC connected to the Fidget Knob via USB) or through the standalone application also included on this GitHub. Please note that certain parameters need to be adjusted (such as data file name and COM port of device) per instance of the Fidget Knob, so we highly recommend the former option of using the IDE. Complete instructions for the code, it's variables, and it's functions are found within the Processing file itself.
+Datalogging is handled over serial connection with a parallel Processing scripts (FidgetKnob_DataLogging.pde). One can utilize this script either through the Processing IDE (running on a PC connected to the Fidget Knob via USB) or through the standalone application also included on this GitHub (in the standalone-datalogging branch). Please note that certain parameters need to be adjusted (such as data file name and COM port of device) per instance of the Fidget Knob, so we highly recommend the former option of using the IDE. Complete instructions for the code, it's variables, and it's functions are found within the Processing file itself.
 
 ## Future Developments
 We welcome any iterations that researchers and independent users wish to make for this prototype. We ask that you record these changes in a systematic way for future users.
@@ -52,7 +52,9 @@ To build a full Fidget Knob, one will require a number of 3D printed parts to ma
 While assembly of the parts is pretty straightforward, we have included a step by step instructions (KnobAssembly) and a bill of materials in the relevant folders.
 
 # Potential FAQ and Troubleshooting
-To save the general public some hassle, I have compiled a list of the largest and most crucial errors that I encountered while creating this device, as well as their solutions. This document (Troubleshooting.txt) can be a resource if something goes wrong, most specifically with compiling software and building out the electronic components of the project. 
+To save the general public some hassle, I have compiled a list of the largest and most crucial errors that I encountered while creating this device, as well as their solutions. This section can be a resource if something goes wrong, most specifically with compiling software and building out the electronic components of the project. 
+
+*insert more here when discovered*
 
 # Acknowledgments
 
