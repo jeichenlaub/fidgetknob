@@ -107,6 +107,6 @@ First, we’ll build the basis of the electronics box.
 | MT6701 - A                     | ESP32 pin D19              |
 | MT6701 - Dir                   | Ground                     |
 
-![image info](./ElectronicsPics/Electronics_Fig4.jpg)   
+  
 
 > Written with [StackEdit](https://stackedit.io/).
