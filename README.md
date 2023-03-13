@@ -4,7 +4,7 @@ Hello! Thanks for your interest in the Fidget Knob instrumented fidget object an
 
 ![Hero shot of the device](KnobTeaser.png)
 
-The overall system is pretty simple: a brushless DC (BLDC) motor has its angular position (and velocity) detected by a magnetic field sensor, which is fed into a ‘field oriented control’ algorithm to generate different haptic sensations and virtual detents. For those experiences in microelectronics, feel free to diverge from this guide when useful. For those still learning, hopefully this guide can take you step by step.
+The overall system is pretty simple: a brushless DC (BLDC) motor has its angular position (and velocity) detected by a magnetic field sensor, which is fed into a ‘field oriented control’ algorithm to generate different haptic sensations and virtual detents. For those experienced in microelectronics, feel free to diverge from this guide when useful. For those still learning, hopefully this guide can take you step by step.
 
 This GitHub repository contains all the files required from both a software and hardware perspective. It contains the following elements, and is organized in GitHub in a similar manner: 
 
@@ -17,9 +17,9 @@ This GitHub repository contains all the files required from both a software and 
  2. Hardware\
 &emsp;a. Electronics Assembly Instructions\
 &emsp;b. Electronics BOM\
-&emsp;c. Electronics Pics\
+&emsp;c. Electronics Pics
  3. libraries\
-&emsp;a. requirements.txt\
+&emsp;a. requirements.txt
  4. FidgetKnob_CustomCalibration.ino
  5. FidgetKnob_Main.ino
  6. FidgetKnob_DataLogging.pde

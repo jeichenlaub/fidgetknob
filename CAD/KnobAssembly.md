@@ -21,16 +21,22 @@ All parts are to be printed one time, with the exception of the pins (4 instance
 
  1. Take the part FK_AssmBasePlate as the first component, and take 4 round magnets to insert into each hole. Use a 5th magnet on the underside of each to orient all the magnets with the same polarity.
 
- 2. Take the 4 copies of FK_AssmPeg and, using superglue, adhere above the holes with the magnets. One could glue the magnets themselves into the holes if you desire.
+ ![View of first baseplate piece with 1 magnet inserted](./KnobPics/Baseplate.jpg)
+
+ 2. Take the 4 copies of FK_AssmPeg and, using superglue, adhere above the holes with the magnets. One could glue the magnets themselves into the holes if you desire.\
 &emsp;a. One could also use one of the next parts in the stack (FK_MT6701Holder or FK_BLDCMount) the keep these pins aligned with proper tilt while the glue dries.
 
- 3. Take the prepared MT6701 magnetic sensor and wires and insert it into the FK_MT6701Holder housing, feeding through the wires. Pay attention to orientation, as the cutouts allow space for underside resistors to help the board lay flat.
+ ![Baseplate with 2 of 4 legs inserted and glued](./KnobPics/Legs.jpg)
+
+ 3. Take the prepared MT6701 magnetic sensor and wires and insert it into the FK_MT6701Holder housing, feeding through the wires. Pay attention to orientation, as the cutouts allow space for underside resistors to help the board lay flat.\
 &emsp;a. After this step, the wires can be bundled.
 
  5. Attach the parts from step 4 to the cured AssmBasePlate, using small amounts of super glue on the larger diameter of each pin to secure the housing. Press down firmly to guarantee parallelism.
 
- 6. Take the prepared BLDC motor and wires from step 14 of the electronics assembly guide and add this to FK_BLDCMount (and then both to the built of stack of parts from steps 1-5). Again, utilize small amounts of glue, this time hot glue, in the mounting holes of the housing, to secure items together.
+ 6. Take the prepared BLDC motor and wires from step 14 of the electronics assembly guide and add this to FK_BLDCMount (and then both to the built of stack of parts from steps 1-5). Again, utilize small amounts of glue, this time hot glue, in the mounting holes of the housing, to secure items together.\
 &emsp;a. **Make sure the all wires are facing the same orientation and match with the cutouts designed into the parts.**
+
+ ![Knob unit assembly all stacked together and fitting flush](./KnobPics/Stack.jpg)
 
  7. Now, all of the wire bundles can themselves be bundled together using heat shrink tubing or whatever fastening mechanisms you prefer.
 
@@ -38,9 +44,11 @@ All parts are to be printed one time, with the exception of the pins (4 instance
 
  1. Take FK_TableBase and fill each of the 4 cylindrical holes with 12 washers (30mm diameter, 1mm thickness).
 
+  ![Table base part with weight washers](./KnobPics/TableBase.jpg)
+
  2. To avoid noise and movement, these washers can be centrally filled with hot glue.
 
- 3. After the washers are inserted, the 2 FK_ElectronicsLid parts can be used to cover the washers.
+ 3. After the washers are inserted, the 2 FK_ElectronicsLid parts can be used to cover the washers.\
 &emsp;a. While these are pretty secure by themselves, we recommend super or hot glue to fasten them down permanently.
 
  4. After these components are dried and adhered, flip the parts over to reveal the magnet holes on the bottom.
@@ -50,6 +58,8 @@ All parts are to be printed one time, with the exception of the pins (4 instance
  6. Place the knob assembly from the prior section into place on the FK_TableBase, and THEN insert the magnets into the deep holes, as this will properly align their polarity.
 
  7. Follow the magnets with generous hot glue to seal the holes. Let dry.
+
+  ![Bottom side of table base part showing magnet holes](./KnobPics/MagnetHoles.jpg)
 
  8. Flip right-side up and test the removal force of the knob assembly from the base. is it not strong enough? Add a 3rd (and 4th) magnet to the base part.
 
