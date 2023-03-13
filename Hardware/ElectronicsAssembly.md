@@ -7,7 +7,7 @@ First, we’ll build the basis of the electronics box.
 1.  Begin with the FK_ElectronicsBox 3D printed part.
 
 2.  Take one of the two breadboards and remove the right-hand power rail unit from the board (2 columns of holes)
-&emsp;a. This board becomes the leftmost board in the assembly
+&emsp;a. This board becomes the leftmost board in the assembly\
 
 3.  Add the other breadboard to the right half of the box.
 
@@ -16,22 +16,21 @@ First, we’ll build the basis of the electronics box.
 5.  Add the brown wires as demonstrated in the image below. All brown wires run to the blue ‘GROUND’ power columns.
 
 6.  Add the white and green/red combo wires (same image). These run from the VCC rails.
-&emsp;a. Important note: later, one rail (right) will be powered by 3.3V and the other (left) 5v. Do not bridge these rails.
+&emsp;a. Important note: later, one rail (right) will be powered by 3.3V and the other (left) 5v. Do not bridge these rails.\
 
 7.  Now we place the red wires for the microcontroller to TMC motor driver board.
-&emsp;a. Starting with the lowest down wire, we place one end in F23 and the other in F9.
-&emsp;b. We continue with the next wire up, connecting F22 to F8.
-&emsp;c. Connect the remaining 4 red wires in similar sequence.
-&emsp;d. Do your best to arrange the jumper wires neatly and flatten their overlapping points a bit to avoid vertical forces on the jumper wires themselves.
+&emsp;a. Starting with the lowest down wire, we place one end in F23 and the other in F9.\
+&emsp;b. We continue with the next wire up, connecting F22 to F8.\
+&emsp;c. Connect the remaining 4 red wires in similar sequence.\
+&emsp;d. Do your best to arrange the jumper wires neatly and flatten their overlapping points a bit to avoid vertical forces on the jumper wires themselves.\
 
 ![Basic breadboard connections and TMC6300](./ElectronicsPics/Electronics_Fig1.jpg)
 
 8.  Prepare the DC power supply jack with ~9cm length, 22AWG wire in red and black.
-&emsp;a. Secure it to the electronics housing and connect positive and ground wires to breadboard I1 and I3, respectively.
-
+&emsp;a. Secure it to the electronics housing and connect positive and ground wires to breadboard I1 and I3, respectively.\
 9.  Prepare the 4-pin RGB with associated wires and a 560 ohm resistor (Resistor 1) (see picture 2).
-&emsp;a. Some RGB LEDs are common anode, others are common cathode. This will change your pinout and resistor setup. Please modify as you need!
-&emsp;b. Connect up the RED pin to F25 and GREEN to F24, and leave the positive line and BLUE wire unconnected.
+&emsp;a. Some RGB LEDs are common anode, others are common cathode. This will change your pinout and resistor setup. Please modify as you need!\
+&emsp;b. Connect up the RED pin to F25 and GREEN to F24, and leave the positive line and BLUE wire unconnected.\
 
 ![Breadboard in casing with LED and power supply wired up](./ElectronicsPics/Electronics_Fig3.jpg) 
 

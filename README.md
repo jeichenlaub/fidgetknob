@@ -9,32 +9,31 @@ The overall system is pretty simple: a brushless DC (BLDC) motor has its angular
 This GitHub repository contains all the files required from both a software and hardware perspective. It contains the following elements, and is organized in GitHub in a similar manner: 
 
 # File Organization
- 1. CAD
-&emsp;a. Part Files
-&emsp;b. Knob Assembly Instructions
-&emsp;c. Knob BOM 
+ 1. CAD\
+&emsp;a. Part Files\
+&emsp;b. Knob Assembly Instructions\
+&emsp;c. Knob BOM\
 &emsp;d. Knob Pics 
- 2. Hardware
-&emsp;a. Electronics Assembly Instructions
-&emsp;b. Electronics BOM
-&emsp;c. Electronics Pics
- 3. libraries
-&emsp;a. requirements.txt
- 4. .ino
- 5. .ino
- 6. .ino
- 7. .pde
- 8. LICENSE
- 9. README
+ 2. Hardware\
+&emsp;a. Electronics Assembly Instructions\
+&emsp;b. Electronics BOM\
+&emsp;c. Electronics Pics\
+ 3. libraries\
+&emsp;a. requirements.txt\
+ 4. FidgetKnob_CustomCalibration.ino
+ 5. FidgetKnob_Main.ino
+ 6. FidgetKnob_DataLogging.pde
+ 7. LICENSE
+ 8. README
 
 
 # Firmware and Software
 
-The core of this project is a single Arduino .ino file. We provide 2 instances: XXXX.ino runs ONLY in association with the Processing data logging script, while YYY.ino runs the Fidget Knob without data logging enabled through Processing. While Arduino/C++ may not be the most robust programming language and platform for advanced works, it is relatively approachable for beginner and intermediate coders and thus suits our use case. 
+The core of this project is a single Arduino .ino file. The software can be initiated in 2 modes: If one holds down the mode select button on startup (until the LED blinks blue 3 times), the Fidget Knob runs independently and without data logging enabled through Processing. If one does not hold any buttons, the Fidget Knob will remain uninitialized until it receives a timestamp from Processing, and it will flash green rapidly to indicate successful boot. While Arduino/C++ may not be the most robust programming language and platform for advanced works, it is relatively approachable for beginner and intermediate coders and thus suits our use case. 
 
 This main .ino is supported by multiple libraries (found in requirements.txt) that are REQUIRED for the proper functioning of the software. These libraries are also included in the 'libraries' folder due to their permissive licensing rules.
 
-**BEFORE RUNNING** the Fidget Knob, one must calibrate it with the included calibration program *CustomSimpleFOCCalibration.ino.* Please note this calibration program is not great, and one should run it multiple times to get an average value for the "electrical offset." This value then needs to be changed in XXX and YYY files. The calibration program also should determine the amount of electrical pole pairs your motor has, but I find it best to do this using instructions on SimpleFOC's page for getting started (https://docs.simplefoc.com/example_from_scratch), or use the manufacturer claim. By setting this as a fixed value in the program, the 'electrical offset' calibration becomes more accurate. One can also use SimpleFOC's built in offset calibration programs, but these seem to yield equally inaccurate results with this specific hardware setup.
+**BEFORE RUNNING** the Fidget Knob, one must calibrate it with the included calibration program *CustomSimpleFOCCalibration.ino.* Please note this calibration program is not great, and one should run it multiple times to get an average value for the "electrical offset." This value then needs to be changed in FidgetKnob_Main.ino file. The calibration program also should determine the amount of electrical pole pairs your motor has, but I find it best to do this using instructions on SimpleFOC's page for getting started (https://docs.simplefoc.com/example_from_scratch), or use the manufacturer claim. By setting this as a fixed value in the program, the 'electrical offset' calibration becomes more accurate. One can also use SimpleFOC's built in offset calibration programs, but these seem to yield equally inaccurate results with this specific hardware setup.
 
 Datalogging is handled over serial connection with a parallel Processing scripts (FidgetKnob_DataLogging.pde). One can utilize this script either through the Processing IDE (running on a PC connected to the Fidget Knob via USB) or through the standalone application also included on this GitHub. Please note that certain parameters need to be adjusted (such as data file name and COM port of device) per instance of the Fidget Knob, so we highly recommend the former option of using the IDE. Complete instructions for the code, it's variables, and it's functions are found within the Processing file itself.
 
@@ -42,6 +41,8 @@ Datalogging is handled over serial connection with a parallel Processing scripts
 We welcome any iterations that researchers and independent users wish to make for this prototype. We ask that you record these changes in a systematic way for future users.
 
 A clear first point of future development is to enable either local or wireless data logging to untether the device from a laptop. The ESP32 platform is readily equipped to do so, and it was outside the scope of my own research.
+
+The calibration programs are notoroiusly finicky and not fully functional. These need to be improved for this hardware combination to enable better off-the-shelf usage.
 
 *insert more here when discovered*
 
