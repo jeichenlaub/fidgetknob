@@ -1,0 +1,27 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Fidget Knob
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: John Anders
+    family-names: Eichenlaub
+    email: johnaeichenlaub@gmail.com
+    orcid: 'https://orcid.org/0000-0001-6060-3397'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.7732484
+repository-code: 'https://github.com/jeichenlaub/fidgetknob'
+abstract: >-
+  This repository contains all necessary code and
+  instructions to create a haptic "Fidget Knob" for use in
+  research into the effects of fidgeting in the work
+  environment, specifically through an instrumented and
+  responsive fidget object.
+license: Apache-2.0
+version: 1.0.0
+date-released: '2023-03-14'
