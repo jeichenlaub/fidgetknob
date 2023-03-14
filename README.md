@@ -63,7 +63,10 @@ This project is more or less a branch of Scott Bezek’s ‘[SmartKnob](https://
 This project was developed during my term as a research employee at the faculty of Industrial Design Engineering at the Technical University of Delft in Delft, the Netherlands. As the project is based in open source software, no intellectual property rights are derived by the University.
 
 # License and Citation
-This Fidget Knob platform is designed for use in a research setting, ideally to enable better study of fidgeting behaviors and to help create target design interventions in this space. For those who use the Fidget Knob in their research, please cite this project with the following DOI: XXXXXXXXXXX.
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7732484.svg)](https://doi.org/10.5281/zenodo.7732484)
+
+This Fidget Knob platform is designed for use in a research setting, ideally to enable better study of fidgeting behaviors and to help create target design interventions in this space. For those who use the Fidget Knob in their research, please cite this project with the following DOI: 10.5281/zenodo.7732484.
 
 This project is licensed under Apache v2 (software, electronics, documentation) and Creative Commons Attribution 4.0 (hardware/mechanical) (see [LICENSE.txt](https://github.com/jeichenlaub/fidgetknob/blob/main/LICENSE)  and  [Creative Commons](https://creativecommons.org/licenses/by/4.0/)).
 ```
